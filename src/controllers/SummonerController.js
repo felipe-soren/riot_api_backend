@@ -1,5 +1,5 @@
 const axios = require('axios');
-const Summoner = require('../models/Summoner')
+const Summoner = require('../models/Summoner');
 
 module.exports = {
   async get(req, res){
