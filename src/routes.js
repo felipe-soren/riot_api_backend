@@ -5,7 +5,7 @@ const LikeController = require('./controllers/LikeController');
 
 const routes = express.Router();
 
-routes.get('/summoner', SummonerController.get);
+routes.post('/summoner', SummonerController.get);
 routes.post('/summoner/:name/like', LikeController.store);
 routes.post('/summoner/:name/dislike', DislikeController.store);
 
