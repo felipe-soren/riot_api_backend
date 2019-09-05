@@ -5,7 +5,7 @@ module.exports = {
   async get(req, res){
     const { name } = req.body;
     console.log(name)
-    const responseSummonerid = await axios.get(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-7214235d-d142-4dfd-8b08-0b7f9d689275`)
+    const responseSummonerid = await axios.get(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-abfe5601-f068-46db-96f6-6e2b6542d692`)
                                           .catch(error => console.log(error),
                                           this.responseSummonerid = []) 
     if (!responseSummonerid){
@@ -20,7 +20,7 @@ module.exports = {
     }
 
     const { id } = responseSummonerid.data
-    const response = await axios.get(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=RGAPI-7214235d-d142-4dfd-8b08-0b7f9d689275`)
+    const response = await axios.get(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=RGAPI-abfe5601-f068-46db-96f6-6e2b6542d692`)
 
     const { leaguePoints, tier, rank, wins, losses } = response.data[0];
     
