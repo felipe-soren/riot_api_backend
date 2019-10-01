@@ -2,10 +2,11 @@ const axios = require('axios');
 const Summoner = require('../models/Summoner');
 
 module.exports = {
+  const API_KEY = "RGAPI-9a06838c-3c12-4410-a7a1-416c01ba69b0"
   async get(req, res){
     const { name } = req.body;
     console.log(name)
-    const responseSummonerid = await axios.get(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-edc358fd-6fee-4a58-a439-f226c271df11`)
+    const responseSummonerid = await axios.get(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${API_KEY}`)
                                           .catch(error => console.log(error),
                                           this.responseSummonerid = []) 
     if (!responseSummonerid){
@@ -20,7 +21,7 @@ module.exports = {
     }
 
     const { id } = responseSummonerid.data
-    const response = await axios.get(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=RGAPI-edc358fd-6fee-4a58-a439-f226c271df11`)
+    const response = await axios.get(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${API_KEY}`)
 
     const { leaguePoints, tier, rank, wins, losses } = response.data[0];
     
