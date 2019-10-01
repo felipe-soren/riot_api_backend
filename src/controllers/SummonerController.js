@@ -2,9 +2,9 @@ const axios = require('axios');
 const Summoner = require('../models/Summoner');
 
 module.exports = {
-  const API_KEY = "RGAPI-9a06838c-3c12-4410-a7a1-416c01ba69b0"
   async get(req, res){
     const { name } = req.body;
+    const API_KEY = "RGAPI-9a06838c-3c12-4410-a7a1-416c01ba69b0"
     console.log(name)
     const responseSummonerid = await axios.get(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${API_KEY}`)
                                           .catch(error => console.log(error),
