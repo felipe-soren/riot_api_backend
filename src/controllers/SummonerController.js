@@ -1,4 +1,3 @@
-const axios = require("axios");
 const Summoner = require("../models/Summoner");
 const api = require("../services/api");
 
@@ -9,12 +8,10 @@ module.exports = {
     let summonerId = "";
     try {
       const responseSummonerid = await api.get(
-        `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-9a06838c-3c12-4410-a7a1-416c01ba69b0`
+        `/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-9a06838c-3c12-4410-a7a1-416c01ba69b0`
       );
       summonerId = responseSummonerid;
-      console.log(summonerId);
     } catch (err) {
-      console.log(err);
       return res.sendStatus(404);
     }
 
@@ -27,7 +24,10 @@ module.exports = {
       const response = await api.get(
         `/league/v4/entries/by-summoner/${id}?api_key=${API_KEY}`
       );
-      const { leaguePoints, tier, rank, wins, losses } = response.data[0];
+      if (response.data[0] === undefined){
+        return res.status(400).send('Unranked')
+      }
+      const { leaguePoints, tier, rank, wins, losses } = response.data[0]; 
       const summoner = await Summoner.create({
         summonerName: name,
         leaguePoints,
