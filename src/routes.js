@@ -2,11 +2,14 @@ const express = require('express')
 const SummonerController = require('./controllers/SummonerController');
 const DislikeController = require('./controllers/DislikeController');
 const LikeController = require('./controllers/LikeController');
+const CommentController = require('./controllers/CommentController');
 
 const routes = express.Router();
 
-routes.post('/summoner', SummonerController.get);
-routes.post('/summoner/:name/like', LikeController.store);
-routes.post('/summoner/:name/dislike', DislikeController.store);
+routes.get('/summoner/:name', SummonerController.show);
+routes.post('/summoner/:summonerId/like', LikeController.store);
+routes.post('/summoner/:summonerId/dislike', DislikeController.store);
+routes.post('/comment', CommentController.store);
+routes.get('/comment/:summonerId', CommentController.show);
 
 module.exports = routes
