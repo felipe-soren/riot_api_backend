@@ -8,7 +8,7 @@ class CommentController {
   }
 
   async show (req, res) {
-    const comments = await Comment.find({ summonerId: req.params.summonerId })
+    const comments = await Comment.find({ summonerId: req.params.summonerId }).sort({createdAt: 'desc'})
     res.json(comments)
   }
 }
